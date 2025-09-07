@@ -20,7 +20,11 @@ public class BasePage {
     }
 
     public boolean isVisible(By locator){
-        return getElement(locator).isDisplayed();
+        try {
+            return getElement(locator).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
     }
 
     public boolean isEnable(By locator){

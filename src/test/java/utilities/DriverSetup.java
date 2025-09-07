@@ -23,10 +23,10 @@ public class DriverSetup {
     }
 
 
-    @BeforeTest
+    @BeforeMethod
     public void openBrowser() {
         WebDriver browser = getBrowser(browser_name);
-        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         setDriver(browser);
     }
 
