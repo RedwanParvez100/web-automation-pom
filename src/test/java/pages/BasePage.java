@@ -23,11 +23,19 @@ public class BasePage {
         return getElement(locator).isDisplayed();
     }
 
+    public boolean isEnable(By locator){
+        return getElement(locator).isEnabled();
+    }
+
     public void loadAPage(String url){
         getDriver().get(url);
     }
 
     public String getPageTitle(){
         return getDriver().getTitle();
+    }
+
+    public String getPageUrl(){
+        return getDriver().getCurrentUrl();
     }
 }
