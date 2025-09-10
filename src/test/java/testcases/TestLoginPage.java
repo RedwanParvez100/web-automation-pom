@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
+import utilities.DataSet;
 import utilities.DriverSetup;
 
 public class TestLoginPage extends DriverSetup {
@@ -20,6 +21,8 @@ public class TestLoginPage extends DriverSetup {
 
     @Test
     public void testLoginWithValidCredentials(){
+        loginPage.addScreenshot("Login page");
+
         loginPage.writeOnElement(loginPage.email_input_box, "feciwe6718@anlocc.com");
         loginPage.writeOnElement(loginPage.password_input_box, "1234567Aa");
         loginPage.clickOnElement(loginPage.login_btn);
@@ -69,6 +72,18 @@ public class TestLoginPage extends DriverSetup {
         loginPage.writeOnElement(loginPage.password_input_box, "");
         loginPage.clickOnElement(loginPage.login_btn);
         Assert.assertEquals(loginPage.getElement(loginPage.password_input_box).getAttribute("validationMessage"), "Please fill out this field.");
+        Assert.assertTrue(loginPage.isVisible(loginPage.login_btn));
+    }
+
+    @Test(dataProvider = "invalidUserCredentials", dataProviderClass = DataSet.class)
+    public void testLoginWithInvalidCredentials(String email, String password, String error_msg, String validation_msg){
+        loginPage.writeOnElement(loginPage.email_input_box, email);
+        loginPage.writeOnElement(loginPage.password_input_box, password);
+        loginPage.clickOnElement(loginPage.login_btn);
+        Assert.assertEquals(loginPage.getElement(loginPage.email_input_box).getAttribute("validationMessage"), validation_msg);
+        Assert.assertEquals(loginPage.getElement(loginPage.password_input_box).getAttribute("validationMessage"), validation_msg);
+        if (loginPage.isVisible(loginPage.error_msg))
+            Assert.assertEquals(loginPage.getElement(loginPage.error_msg).getText(), error_msg);
         Assert.assertTrue(loginPage.isVisible(loginPage.login_btn));
     }
 }

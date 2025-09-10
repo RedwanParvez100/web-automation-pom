@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="D:/Github/web-automation-pom/src/test/java/testcases">
+        <classes>
+            <class name="testcases.TestHomePage">
+                <methods>
+                    <include name="TestHomePageTitle"/>
+                    <exclude name="TestLoginSignupButton"/>
+                </methods>
+            </class>
+
+<!--            <class name="testcases.TestHomePageFoodpanda">-->
+<!--                <methods>-->
+<!--                    <include name="testHomepageTitle"/>-->
+<!--                    <include name="testHomepageUrl"/>-->
+<!--                    <include name="testLoginButton"/>-->
+<!--                    <include name="testLoginWithValidCredentials"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+
+            <class name="testcases.TestLoginPage">
+                <methods>
+                    <include name="testLoginWithValidCredentials"/>
+                    <exclude name="testLoginWithInvalidPassword"/>
+                    <exclude name="testLoginWithInvalidEmailAndPassword"/>
+                    <exclude name="testLoginWithInvalidEmailAndValidPassword"/>
+                    <exclude name="testLoginWithoutEmailAndPassword"/>
+                    <exclude name="testLoginEmailAndWithoutPassword"/>
+                    <exclude name="testLoginWithInvalidCredentials"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,7 +1,12 @@
 package pages;
 
+import io.qameta.allure.Allure;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
+
+import java.io.ByteArrayInputStream;
 
 import static utilities.DriverSetup.getDriver;
 
@@ -41,5 +46,9 @@ public class BasePage {
 
     public String getPageUrl(){
         return getDriver().getCurrentUrl();
+    }
+
+    public void addScreenshot(String name){
+        Allure.addAttachment(name, new ByteArrayInputStream(((TakesScreenshot)getDriver()).getScreenshotAs(OutputType.BYTES)));
     }
 }
